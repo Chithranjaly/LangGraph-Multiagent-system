@@ -28,23 +28,7 @@ The system is composed of three core agents:
   - `PASS` → proceed to next step
   - `FAIL` → retry (with limit)
 
----
 
-## Workflow
-User Task
-↓
-Planner → Generate Steps
-↓
-Executor → Execute Step
-↓
-Critic → Evaluate Output
-↓
-Retry (if FAIL) OR Next Step
-↓
-END
-
-
----
 
 ## Key Features
 
