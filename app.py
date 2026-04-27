@@ -16,5 +16,13 @@ def run_agent(task: str):
         "results": [],
         "messages": []
     }
+
     result = graph_app.invoke(initial_state)
+
+    # serialize result
+    def serialize(obj):
+        if hasattr(obj, "content"):
+            return obj.content
+        return str(obj)
+
     return result
