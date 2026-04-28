@@ -86,7 +86,7 @@ def executor(state: AgentState):
     }
 
 # ====================== CONTROLLING THE LOOP ======================
-MAX_STEPS = 2
+MAX_STEPS = 1
 
 def should_continue(state: AgentState):
     if state["current_step"] >= len(state["plan"]):
@@ -148,15 +148,19 @@ workflow = StateGraph(AgentState)
 
 workflow.add_node("planner", planner)
 workflow.add_node("executor", executor)
-workflow.add_node("critic",critic)
+# workflow.add_node("critic",critic)
 
 
 workflow.set_entry_point("planner")
 workflow.add_edge("planner", "executor")
-workflow.add_edge("executor", "critic")
+# workflow.add_edge("executor", "critic")
+# workflow.add_conditional_edges(
+#     "critic",
+#     route_after_critic
+# )
 workflow.add_conditional_edges(
-    "critic",
-    route_after_critic
+    "executor",
+    should_continue
 )
 
 
