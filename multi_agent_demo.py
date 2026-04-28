@@ -86,7 +86,7 @@ def executor(state: AgentState):
     }
 
 # ====================== CONTROLLING THE LOOP ======================
-MAX_STEPS = 10
+MAX_STEPS = 2
 
 def should_continue(state: AgentState):
     if state["current_step"] >= len(state["plan"]):
