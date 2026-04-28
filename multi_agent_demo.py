@@ -4,7 +4,6 @@ import ast
 import json
 from typing import TypedDict, Annotated, List
 from langgraph.graph import StateGraph, END
-from langchain_xai.chat_models import ChatXAI
 from langchain_core.messages import AIMessage
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -24,7 +23,9 @@ class AgentState(TypedDict):
 from langchain_openai import ChatOpenAI
 
 api_key = os.getenv("OPENAI_API_KEY")
-if not api_key:
+
+# Only enforce locally (not in production import)
+if not api_key and __name__ == "__main__":
     raise ValueError("OPENAI_API_KEY is not set. Check your .env file.")
 
 llm = ChatOpenAI(
